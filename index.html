@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <base href="https://baja.hardrocker.racing/" />
   <link rel="canonical" href="https://baja.hardrocker.racing/" />
-  <title>Baja | Hardrocker Racing</title>
+  <title>Baja | Hardrocker Racing - Remove side bars</title>
   <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace.js"></script>
   <script type="module">
     import { setBasePath } from 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/utilities/base-path.js';
@@ -81,9 +81,11 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
-      width: 100%;
+      width: 100vw;
+      height: 100vh;
       align-items: center;
-      padding: 2rem;
+      padding: 2rem 4rem;
+      margin-left: calc(-50vw + 50%);
     }
 
     .hero-content h1 {
