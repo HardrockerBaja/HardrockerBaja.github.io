@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="{{ BaseUrl }}" />
+  <link rel="canonical" href="{{ CanonicalUrl }}" />
+  <title>{{ PageTitle }}</title>
+  
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace.js"></script>
+  <script type="module">
+    import { setBasePath } from 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/utilities/base-path.js';
+    setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist');
+  </script>
+  
+  <link rel="stylesheet" href="https://hardrocker.racing/master.css" />
+  
+  <style>
+    /* Page-specific overrides */
+    body {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), 
+                  url('{{ BackgroundImagePath }}') center center / cover no-repeat fixed;
+    }
+    main { 
+      margin: 0; 
+      padding: 0; 
+    }
+    .hero {
+      padding: 2rem 4rem;
+      height: 100vh;
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      gap: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .brand a { 
+      font-size: 1.1rem; 
+      color: #f9d56e; 
+      text-decoration: none; 
+      letter-spacing: 0.08em; 
+      text-transform: uppercase; 
+    }
+    .navbar { 
+      border-bottom: none; 
+    }
+    .hero-card { 
+      border-radius: 12px; 
+    }
+    @media (max-width: 768px) { 
+      .hero { padding: 2rem; } 
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand">
+      <a href="{{ BrandUrl }}">{{ TeamName }}</a>
+    </div>
+    <nav>
+      <a href="https://hardrocker.racing/">Home</a>
+      <a class="{{ ActiveClassBaja }}" href="https://baja.hardrocker.racing/">Baja</a>
+      <a class="{{ ActiveClassFormula }}" href="https://formula.hardrocker.racing/">Formula</a>
+    </nav>
+  </header>
+  
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>{{ HeroHeadline }}</h1>
+        <p>{{ HeroDescription }}</p>
+        <p>Feel free to reach out to us at {{ ContactEmail }}</p>
+        
+        <div class="button-group">
+          <a class="primary" href="{{ PrimaryButtonUrl }}">{{ PrimaryButtonText }}</a>
+          <a class="secondary" href="{{ SecondaryButtonUrl }}">{{ SecondaryButtonText }}</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h2>{{ CardHeadline }}</h2>
+        <p>{{ CardDescription }}</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -6,13 +6,24 @@
   <base href="https://baja.hardrocker.racing/" />
   <link rel="canonical" href="https://baja.hardrocker.racing/" />
   <title>Baja</title>
+  
   <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace.js"></script>
   <script type="module">
     import { setBasePath } from 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/utilities/base-path.js';
     setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist');
   </script>
+  
   <link rel="stylesheet" href="https://hardrocker.racing/master.css" />
+  
   <style>
+    /* FIX 1: Reserve space for the navbar to prevent the page from jumping 
+      when the fetch completes. Adjust the 60px to match your actual navbar height.
+    */
+    #navbar-placeholder {
+      min-height: 60px; 
+      width: 100%;
+    }
+
     /* Baja-specific overrides (minimal). Most styles are shared from the central master.css */
     body {
       background: linear-gradient(135deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('Images/DSC_7307.jpg') center center / cover no-repeat fixed;
@@ -35,16 +46,34 @@
   </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="brand">
-      <a href="https://baja.hardrocker.racing/">Baja</a>
-    </div>
-    <nav>
-      <a href="https://hardrocker.racing/">Home</a>
-      <a class="active" href="https://baja.hardrocker.racing/">Baja</a>
-      <a href="https://formula.hardrocker.racing/">Formula</a>
-    </nav>
-  </header>
+  
+  <div id="navbar-placeholder"></div>
+  
+  <script>
+    fetch('navbar-baja.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Navbar load failed');
+        return response.text();
+      })
+      .then(html => {
+        /* FIX 2: Using createContextualFragment instead of innerHTML. 
+          This safely injects the HTML AND ensures any <script> tags 
+          inside your navbar-baja.html file will actually execute.
+        */
+        const navFragment = document.createRange().createContextualFragment(html);
+        const placeholder = document.getElementById('navbar-placeholder');
+        
+        placeholder.innerHTML = ''; // Clear it out
+        placeholder.appendChild(navFragment); // Inject the real nav
+      })
+      .catch(error => {
+        console.warn(error);
+        /* FIX 3: Give the user a fallback if the nav fails to load entirely */
+        document.getElementById('navbar-placeholder').innerHTML = 
+          '<div style="padding: 1rem; text-align: center; background: #222; color: #f9d56e;">Navigation failed to load. <a href="/" style="color: white;">Go to Home</a></div>';
+      });
+  </script>
+
   <main>
     <section class="hero">
       <div class="hero-content">
