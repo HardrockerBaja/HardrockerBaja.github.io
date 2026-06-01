@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <base href="{{ BaseUrl }}" />
-  <link rel="canonical" href="{{ CanonicalUrl }}" />
+  <base href="https://baja.hardrocker.racing/" />
+  <link rel="canonical" href="https://baja.hardrocker.racing/" />
   <title>{{ PageTitle }}</title>
   
   <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace.js"></script>
@@ -17,16 +17,28 @@
   <link rel="stylesheet" href="baja-overrides.css" />
 </head>
 <body>
-  <header class="navbar">
-    <div class="brand">
-      <a href="{{ BrandUrl }}">{{ TeamName }}</a>
-    </div>
-    <nav>
-      <a href="https://hardrocker.racing/">Home</a>
-      <a class="{{ ActiveClassBaja }}" href="https://baja.hardrocker.racing/">Baja</a>
-      <a class="{{ ActiveClassFormula }}" href="https://formula.hardrocker.racing/">Formula</a>
-    </nav>
-  </header>
+  
+  <div id="navbar-placeholder"></div>
+  
+  <script>
+    fetch('navbar-baja.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Navbar load failed');
+        return response.text();
+      })
+      .then(html => {
+        const navFragment = document.createRange().createContextualFragment(html);
+        const placeholder = document.getElementById('navbar-placeholder');
+        
+        placeholder.innerHTML = '';
+        placeholder.appendChild(navFragment);
+      })
+      .catch(error => {
+        console.warn(error);
+        document.getElementById('navbar-placeholder').innerHTML = 
+          '<div style="padding: 1rem; text-align: center; background: #222; color: #f9d56e;">Navigation failed to load. <a href="/" style="color: white;">Go to Home</a></div>';
+      });
+  </script>
   
   <main>
     <section class="hero">

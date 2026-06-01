@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <base href="{{ BaseUrl }}" />
-  <link rel="canonical" href="{{ CanonicalUrl }}" />
-  <title>{{ PageTitle }}</title>
+  <base href="https://baja.hardrocker.racing/" />
+  <link rel="canonical" href="https://baja.hardrocker.racing/" />
+  <title>Team History</title>
   
   <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace.js"></script>
   <script type="module">
@@ -15,35 +15,581 @@
   
   <link rel="stylesheet" href="https://hardrocker.racing/master.css" />
   <link rel="stylesheet" href="baja-overrides.css" />
+  
+  <style>
+    .history-timeline {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+    
+    .history-entry {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+    
+    .history-entry:nth-child(even) {
+      direction: rtl;
+    }
+    
+    .history-entry:nth-child(even) > * {
+      direction: ltr;
+    }
+    
+    .history-year {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #f9d56e;
+      margin-bottom: 1rem;
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+    
+    .history-image {
+      background: #333;
+      border: 4px solid #2c3e50;
+      border-radius: 12px;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-size: 1rem;
+    }
+    
+    .history-content {
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+    }
+    
+    .history-content h3 {
+      margin-top: 0;
+      color: #f9d56e;
+      font-size: 1.3rem;
+    }
+    
+    .history-content p {
+      color: #ddd;
+      line-height: 1.6;
+      margin: 0.5rem 0;
+    }
+    
+    @media (max-width: 768px) {
+      .history-entry {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .history-entry:nth-child(even) {
+        direction: ltr;
+      }
+      
+      .history-image {
+        height: 250px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="navbar">
-    <div class="brand">
-      <a href="{{ BrandUrl }}">{{ TeamName }}</a>
-    </div>
-    <nav>
-      <a href="https://hardrocker.racing/">Home</a>
-      <a class="{{ ActiveClassBaja }}" href="https://baja.hardrocker.racing/">Baja</a>
-      <a class="{{ ActiveClassFormula }}" href="https://formula.hardrocker.racing/">Formula</a>
-    </nav>
-  </header>
+  
+  <div id="navbar-placeholder"></div>
+  
+  <script>
+    fetch('navbar-baja.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Navbar load failed');
+        return response.text();
+      })
+      .then(html => {
+        const navFragment = document.createRange().createContextualFragment(html);
+        const placeholder = document.getElementById('navbar-placeholder');
+        
+        placeholder.innerHTML = '';
+        placeholder.appendChild(navFragment);
+      })
+      .catch(error => {
+        console.warn(error);
+        document.getElementById('navbar-placeholder').innerHTML = 
+          '<div style="padding: 1rem; text-align: center; background: #222; color: #f9d56e;">Navigation failed to load. <a href="/" style="color: white;">Go to Home</a></div>';
+      });
+  </script>
   
   <main>
     <section class="hero">
       <div class="hero-content">
-        <h1>{{ HeroHeadline }}</h1>
-        <p>{{ HeroDescription }}</p>
-        <p>Feel free to reach out to us at {{ ContactEmail }}</p>
-        
-        <div class="button-group">
-          <a class="primary" href="{{ PrimaryButtonUrl }}">{{ PrimaryButtonText }}</a>
-          <a class="secondary" href="{{ SecondaryButtonUrl }}">{{ SecondaryButtonText }}</a>
+        <h1>Team History</h1>
+        <h2>We have a long history here at South Dakota Mines.</h2>
+        <p>Founded in 1987, we have been competing for just shy of 40 years.</p>
+      </div>
+    </section>
+    
+    <section class="history-timeline">
+      <div class="history-entry">
+        <div class="history-year">2026: Rochester, New York</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Ramkes #70</h3>
+          <p>Senior Design: --</p>
+          <p>Design: --</p>
+          <p>Cost: --</p>
+          <p>Sales Presentation: --</p>
+          <p>Acceleration: --</p>
+          <p>Maneuverability: --</p>
+          <p>Hill Climb: --</p>
+          <p>Endurance: --</p>
+          <p><strong>Overall: --</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2025: Maryland</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Ghost #69</h3>
+          <p>Senior Design: --</p>
+          <p>Design: --</p>
+          <p>Cost: --</p>
+          <p>Sales Presentation: --</p>
+          <p>Acceleration: --</p>
+          <p>Maneuverability: --</p>
+          <p>Hill Climb: --</p>
+          <p>Endurance: --</p>
+          <p><strong>Overall: 46th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2024: Pennsylvania</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Lightning McKeon #88</h3>
+          <p>Senior Design: --</p>
+          <p>Design: --</p>
+          <p>Cost: --</p>
+          <p>Sales Presentation: --</p>
+          <p>Acceleration: --</p>
+          <p>Maneuverability: --</p>
+          <p>Hill Climb: --</p>
+          <p>Endurance: --</p>
+          <p><strong>Overall: 17th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2023: Oregon</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Maveric #17</h3>
+          <p>Senior Design: --</p>
+          <p>Design: --</p>
+          <p>Cost: --</p>
+          <p>Sales Presentation: --</p>
+          <p>Acceleration: --</p>
+          <p>Maneuverability: --</p>
+          <p>Hill Climb: --</p>
+          <p>Endurance: --</p>
+          <p><strong>Overall: 27th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2022: Tennessee</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Ben #40</h3>
+          <p>Senior Design: --</p>
+          <p>Design: --</p>
+          <p>Cost: --</p>
+          <p>Sales Presentation: --</p>
+          <p>Acceleration: --</p>
+          <p>Maneuverability: --</p>
+          <p>Hill Climb: --</p>
+          <p>Endurance: --</p>
+          <p><strong>Overall: 39th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2021: Louisville, Kentucky</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Spyker #46</h3>
+          <p>Senior Design: --</p>
+          <p>Design: --</p>
+          <p>Cost: --</p>
+          <p>Sales Presentation: --</p>
+          <p>Acceleration: --</p>
+          <p>Maneuverability: --</p>
+          <p>Hill Climb: --</p>
+          <p>Endurance: --</p>
+          <p><strong>Overall: 10th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2020: Louisville, Kentucky</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>COVID, Virtual Presentations Only</h3>
+          <p>Senior Design: --</p>
+          <p>Design: --</p>
+          <p>Cost: --</p>
+          <p>Sales Presentation: --</p>
+          <p>Acceleration: --</p>
+          <p>Maneuverability: --</p>
+          <p>Hill Climb: --</p>
+          <p>Endurance: --</p>
+          <p><strong>Overall: 29th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2019: California</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Bandit</h3>
+          <p>Senior Design: --</p>
+          <p>Design: --</p>
+          <p>Cost: --</p>
+          <p>Sales Presentation: --</p>
+          <p>Acceleration: --</p>
+          <p>Maneuverability: --</p>
+          <p>Hill Climb: --</p>
+          <p>Endurance: --</p>
+          <p><strong>Overall: 42nd</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2018: Oregon</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Billy #65</h3>
+          <p>Senior Design: --</p>
+          <p>Design: --</p>
+          <p>Cost: --</p>
+          <p>Sales Presentation: --</p>
+          <p>Acceleration: --</p>
+          <p>Maneuverability: --</p>
+          <p>Hill Climb: --</p>
+          <p>Endurance: --</p>
+          <p><strong>Overall: 25th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2017: California</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Nemo #151</h3>
+          <p>Senior Design: --</p>
+          <p>Design: --</p>
+          <p>Cost: --</p>
+          <p>Sales Presentation: --</p>
+          <p>Acceleration: --</p>
+          <p>Maneuverability: --</p>
+          <p>Hill Climb: --</p>
+          <p>Endurance: --</p>
+          <p><strong>Overall: 29th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2016: California</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Slim #78</h3>
+          <p>Design: 38th</p>
+          <p>Cost: 18th</p>
+          <p>Sales Presentation: 34th</p>
+          <p>Acceleration: 43rd</p>
+          <p>Maneuverability: 55th</p>
+          <p>Hill Climb: 58th</p>
+          <p>Rock Crawl: 18th</p>
+          <p>Endurance: 51st</p>
+          <p><strong>Overall: 37th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2015: Portland, Oregon</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Titan #9</h3>
+          <p>Design: 23rd</p>
+          <p>Cost: 8th</p>
+          <p>Sales Presentation: 15th</p>
+          <p>Acceleration: 34th</p>
+          <p>Maneuverability: 32nd</p>
+          <p>Hill Climb: 41st</p>
+          <p>Rock Crawl: 13th</p>
+          <p>Endurance: 51st</p>
+          <p><strong>Overall: 38th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2014: Peoria, Illinois</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Titan #43</h3>
+          <p>New Car</p>
+          <p>Design: 5th</p>
+          <p>Cost: 19th</p>
+          <p>Sales Presentation: 6th</p>
+          <p>Acceleration: 8th</p>
+          <p>Maneuverability: 38th</p>
+          <p>Hill Climb: 7th</p>
+          <p>Rock Crawl: 49th</p>
+          <p>Endurance: 17th</p>
+          <p><strong>Overall: 9th</strong></p>
         </div>
       </div>
 
-      <div class="hero-card">
-        <h2>{{ CardHeadline }}</h2>
-        <p>{{ CardDescription }}</p>
+      <div class="history-entry">
+        <div class="history-year">2014: Pittsburg, Kansas</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Hogzilla #63</h3>
+          <p>Redesign</p>
+          <p>Design: 36th</p>
+          <p>Cost: 29th</p>
+          <p>Sales Presentation: 44th</p>
+          <p>Acceleration: 77th</p>
+          <p>Maneuverability: 50th</p>
+          <p>Sled Pull: 22nd</p>
+          <p>Suspension & Traction: 35th</p>
+          <p>Endurance: 46th</p>
+          <p><strong>Overall: 45th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2013: Bellingham, Washington</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Competition Results</h3>
+          <p>Senior Design: --</p>
+          <p>Design: 5th</p>
+          <p>Cost: 12th</p>
+          <p>Sales Presentation: 12th</p>
+          <p>Acceleration: 42nd</p>
+          <p>Maneuverability: 33rd</p>
+          <p>Hill Climb: 48th</p>
+          <p>Rock Crawl: 52nd</p>
+          <p>Endurance: 23rd</p>
+          <p><strong>Overall: 16th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2012: Portland, Oregon</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Blind Bat #27</h3>
+          <p>Senior Design: --</p>
+          <p>Design: 19th</p>
+          <p>Cost: 11th</p>
+          <p>Sales Presentation: 17th</p>
+          <p>Acceleration: 10th</p>
+          <p>Maneuverability: 15th</p>
+          <p>Hill Climb: 25th</p>
+          <p>Rock Crawl: 17th</p>
+          <p>Endurance: 26th</p>
+          <p><strong>Overall: 21st</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2011: Peoria, Illinois</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Sasquatch #2</h3>
+          <p>Senior Design: --</p>
+          <p>Design: 9th</p>
+          <p>Cost: 23rd</p>
+          <p>Sales Presentation: 3rd</p>
+          <p>Acceleration: 80th</p>
+          <p>Maneuverability: 80th</p>
+          <p>Hill Climb: 81st</p>
+          <p>Rock Crawl: 79th</p>
+          <p>Endurance: 86th</p>
+          <p><strong>Overall: 77th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2010: Bellingham, Washington</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Orphan #4</h3>
+          <p>Senior Design: --</p>
+          <p>Design: 10th</p>
+          <p>Cost: 6th</p>
+          <p>Sales Presentation: 28th</p>
+          <p>Acceleration: 18th</p>
+          <p>Maneuverability: 4th</p>
+          <p>Hill Climb: 16th</p>
+          <p>Rock Crawl: 3rd</p>
+          <p>Endurance: 8th</p>
+          <p><strong>Overall: 2nd</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2009: Portland, Oregon</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Al #4</h3>
+          <p>Senior Design: --</p>
+          <p>Design: 5th</p>
+          <p>Cost: 6th</p>
+          <p>Sales Presentation: 9th</p>
+          <p>Acceleration: 7th</p>
+          <p>Maneuverability: 15th</p>
+          <p>Hill Climb: 16th</p>
+          <p>Rock Crawl: 11th</p>
+          <p>Endurance: 9th (after penalty)</p>
+          <p><strong>Overall: 11th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2008: Peoria, Illinois</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Blue Falcon #117</h3>
+          <p>Redesign</p>
+          <p>Design: 36th</p>
+          <p>Cost: 7th</p>
+          <p>Sales Presentation: 1st</p>
+          <p>Acceleration: 49th</p>
+          <p>Maneuverability: 16th</p>
+          <p>Hill Climb: 46th</p>
+          <p>Rock Crawl: 38th</p>
+          <p>Endurance: 1st</p>
+          <p><strong>Overall: 4th</strong></p>
+
+          <h3>Herbie #7</h3>
+          <p>Senior Design: --</p>
+          <p>Design: 4th</p>
+          <p>Cost: 8th</p>
+          <p>Sales Presentation: 17th</p>
+          <p>Acceleration: 32nd</p>
+          <p>Maneuverability: 8th</p>
+          <p>Hill Climb: 2nd</p>
+          <p>Rock Crawl: 11th</p>
+          <p>Endurance: 19th</p>
+          <p><strong>Overall: 6th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2007: Portland, Oregon</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Blue Falcon #7</h3>
+          <p>Senior Design: --</p>
+          <p>Design: 25th</p>
+          <p>Cost: 38th</p>
+          <p>Sales Presentation: 12th</p>
+          <p>Acceleration: 2nd</p>
+          <p>Maneuverability: 6th</p>
+          <p>Hill Climb: 1st</p>
+          <p>Rock Crawl: 12th</p>
+          <p>Endurance: --</p>
+          <p><strong>Overall: 11th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2006: Portland, Oregon</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Black Sheep #112</h3>
+          <p>Senior Design: --</p>
+          <p>Design: 12th</p>
+          <p>Cost: 40th</p>
+          <p>Sales Presentation: 22nd</p>
+          <p>Acceleration: 9th</p>
+          <p>Maneuverability: 10th</p>
+          <p>Hill Climb: 10th</p>
+          <p>Rock Crawl: 22nd</p>
+          <p>Endurance: 7th</p>
+          <p><strong>Overall: 7th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2005: Tucson, Arizona</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Copper Car #8</h3>
+          <p>Senior Design: --</p>
+          <p>Design: 59th</p>
+          <p>Cost: 47th</p>
+          <p>Sales Presentation: --</p>
+          <p>Acceleration: DNS</p>
+          <p>Maneuverability: 9th</p>
+          <p>Hill Climb: 48th</p>
+          <p>Rock Crawl: 38th</p>
+          <p>Endurance: 89th</p>
+          <p><strong>Overall: 76th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2004: Oregon</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Tan Car #17</h3>
+          <p>Senior Design: --</p>
+          <p>Design: 10th</p>
+          <p>Cost: 20th</p>
+          <p>Sales Presentation: 11th</p>
+          <p>Acceleration: 10th</p>
+          <p>Maneuverability: 31st</p>
+          <p>Hill Climb: 25th</p>
+          <p>Endurance: 15th</p>
+          <p><strong>Overall: 8th</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2003: Location, State</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Competition Results</h3>
+          <p>Senior Design: --</p>
+          <p>Design: --</p>
+          <p>Cost: --</p>
+          <p>Sales Presentation: --</p>
+          <p>Acceleration: --</p>
+          <p>Maneuverability: --</p>
+          <p>Hill Climb: --</p>
+          <p>Endurance: --</p>
+          <p><strong>Overall: --</strong></p>
+        </div>
+      </div>
+      
+      <div class="history-entry">
+        <div class="history-year">2002: Oregon #6</div>
+        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-content">
+          <h3>Competition Results</h3>
+          <p>Design: 45th</p>
+          <p>Cost: 30th</p>
+          <p>Sales Presentation: 39th</p>
+          <p>Acceleration: 40th</p>
+          <p>Maneuverability: 42nd</p>
+          <p>Hill Climb: 14th</p>
+          <p>Endurance: 25th</p>
+          <p><strong>Overall: 22nd</strong></p>
+        </div>
       </div>
     </section>
   </main>
