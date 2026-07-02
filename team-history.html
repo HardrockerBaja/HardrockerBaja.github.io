@@ -27,7 +27,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
-      align-items: center;
+      align-items: stretch;
       margin-bottom: 4rem;
     }
     
@@ -52,12 +52,18 @@
       background: #333;
       border: 4px solid #2c3e50;
       border-radius: 12px;
-      height: 300px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      min-height: 150px;
+      display: block;
+      overflow: hidden;
       color: #888;
       font-size: 1rem;
+    }
+
+    .history-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
     }
     
     .history-content {
@@ -89,8 +95,24 @@
       }
       
       .history-image {
-        height: 250px;
+        min-height: 120px;
       }
+    }
+
+    .history-group summary {
+      cursor: pointer;
+      padding: 0.6rem 0.8rem;
+      background: rgba(44,62,80,0.6);
+      border-radius: 8px;
+      color: #f9d56e;
+      font-weight: bold;
+      margin: 1rem 0;
+      list-style: none;
+    }
+
+    .history-group[open] summary {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
     }
   </style>
 </head>
@@ -247,6 +269,9 @@
         </div>
       </div>
       
+      <details class="history-group">
+        <summary>2010–2019</summary>
+
       <div class="history-entry">
         <div class="history-year">2019: California</div>
         <div class="history-image">[Image Placeholder]</div>
@@ -300,7 +325,7 @@
       
       <div class="history-entry">
         <div class="history-year">2016: California</div>
-        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-image">Images/Past Years/2016/2016 Slim.jpg</div>
         <div class="history-content">
           <h3>Slim #78</h3>
           <p>Design: 38th</p>
@@ -317,7 +342,7 @@
       
       <div class="history-entry">
         <div class="history-year">2015: Portland, Oregon</div>
-        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-image">Images/Past Years/2015/2015 Titan.avif</div>
         <div class="history-content">
           <h3>Titan #9</h3>
           <p>Design: 23rd</p>
@@ -334,7 +359,7 @@
       
       <div class="history-entry">
         <div class="history-year">2014: Peoria, Illinois</div>
-        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-image">Images/Past Years/2014/2014 Titan.avif</div>
         <div class="history-content">
           <h3>Titan #43</h3>
           <p>New Car</p>
@@ -352,7 +377,7 @@
 
       <div class="history-entry">
         <div class="history-year">2014: Pittsburg, Kansas</div>
-        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-image">Images/Past Years/2014/2014 Hogzilla.avif</div>
         <div class="history-content">
           <h3>Hogzilla #63</h3>
           <p>Redesign</p>
@@ -370,7 +395,7 @@
       
       <div class="history-entry">
         <div class="history-year">2013: Bellingham, Washington</div>
-        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-image">Images/Past Years/2013/2013 Wilbur.avif</div>
         <div class="history-content">
           <h3>Competition Results</h3>
           <p>Senior Design: --</p>
@@ -388,7 +413,7 @@
       
       <div class="history-entry">
         <div class="history-year">2012: Portland, Oregon</div>
-        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-image">Images/Past Years/2012/2012 Blind Bat.avif</div>
         <div class="history-content">
           <h3>Blind Bat #27</h3>
           <p>Senior Design: --</p>
@@ -406,7 +431,7 @@
       
       <div class="history-entry">
         <div class="history-year">2011: Peoria, Illinois</div>
-        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-image">Images/Past Years/2011/2011 Sasquatch.avif</div>
         <div class="history-content">
           <h3>Sasquatch #2</h3>
           <p>Senior Design: --</p>
@@ -424,7 +449,7 @@
       
       <div class="history-entry">
         <div class="history-year">2010: Bellingham, Washington</div>
-        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-image">Images/Past Years/2010/2010 Orphan.avif</div>
         <div class="history-content">
           <h3>Orphan #4</h3>
           <p>Senior Design: --</p>
@@ -439,10 +464,14 @@
           <p><strong>Overall: 2nd</strong></p>
         </div>
       </div>
+      </details>
       
+      <details class="history-group">
+        <summary>2002–2009</summary>
+
       <div class="history-entry">
         <div class="history-year">2009: Portland, Oregon?</div>
-        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-image">Images/Past Years/2009/2009 Al.avif</div>
         <div class="history-content">
           <h3>Al #4</h3>
           <p>Senior Design: --</p>
@@ -460,7 +489,7 @@
       
       <div class="history-entry">
         <div class="history-year">2008: Peoria, Illinois</div>
-        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-image">Images/Past Years/2008/2008.avif</div>
         <div class="history-content">
           <h3>Blue Falcon #117</h3>
           <p>Redesign</p>
@@ -490,7 +519,7 @@
       
       <div class="history-entry">
         <div class="history-year">2007: Portland, Oregon?</div>
-        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-image">Images/Past Years/2007/2007 Blue Falcon.avif</div>
         <div class="history-content">
           <h3>Blue Falcon #7</h3>
           <p>Senior Design: --</p>
@@ -508,7 +537,7 @@
       
       <div class="history-entry">
         <div class="history-year">2006: Portland, Oregon</div>
-        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-image">Images/Past Years/2006/2006.avif</div>
         <div class="history-content">
           <h3>Black Sheep #112</h3>
           <p>Senior Design: --</p>
@@ -526,7 +555,7 @@
       
       <div class="history-entry">
         <div class="history-year">2005: Tucson, Arizona</div>
-        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-image">Images/Past Years/2005/2005.avif</div>
         <div class="history-content">
           <h3>Copper Car #8</h3>
           <p>Senior Design: --</p>
@@ -544,7 +573,7 @@
       
       <div class="history-entry">
         <div class="history-year">2004: Oregon</div>
-        <div class="history-image">[Image Placeholder]</div>
+        <div class="history-image">Images/Past Years/2004/2004.avif</div>
         <div class="history-content">
           <h3>Tan Car #17</h3>
           <p>Senior Design: --</p>
@@ -560,25 +589,8 @@
       </div>
       
       <div class="history-entry">
-        <div class="history-year">2003: Location, State</div>
-        <div class="history-image">[Image Placeholder]</div>
-        <div class="history-content">
-          <h3>Competition Results</h3>
-          <p>Senior Design: --</p>
-          <p>Design: --</p>
-          <p>Cost: --</p>
-          <p>Sales Presentation: --</p>
-          <p>Acceleration: --</p>
-          <p>Maneuverability: --</p>
-          <p>Hill Climb: --</p>
-          <p>Endurance: --</p>
-          <p><strong>Overall: --</strong></p>
-        </div>
-      </div>
-      
-      <div class="history-entry">
         <div class="history-year">2002: Utah</div>
-        <div class="history-image"><img src="Images/2002/2002.avif"></div>
+        <div class="history-image"><img src="Images/Past Years/2002/2002.avif"></div>
         <div class="history-content">
           <h3>Sabatoge #6</h3>
           <p>Design: 45th</p>
@@ -591,6 +603,7 @@
           <p><strong>Overall: 22nd</strong></p>
         </div>
       </div>
+      </details>
     </section>
   </main>
 </body>
