@@ -6,6 +6,6 @@
   const link = document.createElement('link');
   link.rel = 'icon';
   link.type = 'image/x-icon';
-  link.href = 'Images/Favicon/favicon1.ico';
+  link.href = 'Images/Favicon/favicon.ico';
   document.head.appendChild(link);
 })();
