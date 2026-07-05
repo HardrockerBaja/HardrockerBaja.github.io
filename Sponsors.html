@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="https://baja.hardrocker.racing/" />
+  <link rel="canonical" href="https://baja.hardrocker.racing/" />
+  <title>Sponsors</title>
+  
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace.js"></script>
+  <script type="module">
+    import { setBasePath } from 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/utilities/base-path.js';
+    setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist');
+  </script>
+  
+  <link rel="stylesheet" href="https://hardrocker.racing/master.css" />
+  <link rel="stylesheet" href="baja-overrides.css" />
+  <script src="baja-favicon.js"></script>
+  <style>
+    .sponsor-collage {
+      max-width: 1200px;
+      margin: 2rem auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .sponsor-collage h2 {
+      color: #f9d56e;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .sponsor-collage p {
+      color: #ddd;
+      text-align: center;
+      margin-bottom: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .sponsor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .sponsor-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 1.25rem;
+      display: grid;
+      justify-items: center;
+      gap: 0.75rem;
+      min-height: 160px;
+    }
+
+    .sponsor-card img {
+      max-width: 100%;
+      max-height: 100px;
+      width: auto;
+      display: block;
+    }
+
+    .sponsor-card-placeholder {
+      min-height: 120px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sponsor-card-placeholder .logo-placeholder {
+      color: #ddd;
+      font-weight: bold;
+      text-align: center;
+      padding: 1rem;
+      width: 100%;
+      background: rgba(0,0,0,0.12);
+      border-radius: 12px;
+    }
+
+    .sponsor-card figcaption {
+      color: #f9d56e;
+      font-size: 0.95rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tier-tag {
+      background: #f9d56e;
+      color: #111;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="navbar-placeholder"></div>
+  
+  <script>
+    fetch('navbar-baja.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Navbar load failed');
+        return response.text();
+      })
+      .then(html => {
+        const navFragment = document.createRange().createContextualFragment(html);
+        const placeholder = document.getElementById('navbar-placeholder');
+        
+        placeholder.innerHTML = '';
+        placeholder.appendChild(navFragment);
+      })
+      .catch(error => {
+        console.warn(error);
+        document.getElementById('navbar-placeholder').innerHTML = 
+          '<div style="padding: 1rem; text-align: center; background: #222; color: #f9d56e;">Navigation failed to load. <a href="/" style="color: white;">Go to Home</a></div>';
+      });
+  </script>
+  
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Our Sponsors Make This Possible</h1>
+        <p>We value each and every sponsor who supports our team and helps us grow as engineers outside of the classroom.</p>
+      </div>
+    </section>
+
+    <section class="sponsor-collage">
+      <h2>Sponsor Logo Collage</h2>
+      <p>Big sponsors are listed first with a <span class="tier-tag">4</span> designation, followed by smaller sponsor logos below.</p>
+
+      <div class="tier-block">
+        <h2>Tier 4 Sponsors</h2>
+        <div class="sponsor-grid">
+          <figure class="sponsor-card"><img src="Images/Sponsor Logos/Big Sponsors/Astec.svg" alt="Astec logo"><figcaption>Astec <span class="tier-tag">4</span></figcaption></figure>
+          <figure class="sponsor-card"><img src="Images/Sponsor Logos/Big Sponsors/HPE Inc.svg" alt="HPE Inc logo"><figcaption>HPE Inc <span class="tier-tag">4</span></figcaption></figure>
+          <figure class="sponsor-card"><img src="Images/Sponsor Logos/Big Sponsors/HPE logo.png" alt="HPE logo"><figcaption>HPE <span class="tier-tag">4</span></figcaption></figure>
+          <figure class="sponsor-card"><img src="Images/Sponsor Logos/Big Sponsors/HPE-logo NoBkrnd.png" alt="HPE logo no background"><figcaption>HPE <span class="tier-tag">4</span></figcaption></figure>
+          <figure class="sponsor-card"><img src="Images/Sponsor Logos/Big Sponsors/Kockler Family.svg" alt="Kockler Family logo"><figcaption>Kockler Family <span class="tier-tag">4</span></figcaption></figure>
+          <figure class="sponsor-card"><img src="Images/Sponsor Logos/Big Sponsors/PSP Logo.png" alt="PSP logo"><figcaption>PSP <span class="tier-tag">4</span></figcaption></figure>
+          <figure class="sponsor-card"><img src="Images/Sponsor Logos/Big Sponsors/PSP Logo maybe.png" alt="PSP logo alternate"><figcaption>PSP <span class="tier-tag">4</span></figcaption></figure>
+          <figure class="sponsor-card"><img src="Images/Sponsor Logos/Big Sponsors/South Dakota Mines.svg" alt="South Dakota Mines logo"><figcaption>South Dakota Mines <span class="tier-tag">4</span></figcaption></figure>
+          <figure class="sponsor-card"><img src="Images/Sponsor Logos/Big Sponsors/South Dakota Mines - Vertical.svg" alt="South Dakota Mines vertical logo"><figcaption>South Dakota Mines <span class="tier-tag">4</span></figcaption></figure>
+          <figure class="sponsor-card sponsor-card-placeholder"><div class="logo-placeholder">Redline Design</div><figcaption>Redline Design <span class="tier-tag">4</span></figcaption></figure>
+          <figure class="sponsor-card sponsor-card-placeholder"><div class="logo-placeholder">download.png</div><figcaption>download.png <span class="tier-tag">4</span></figcaption></figure>
+        </div>
+      </div>
+
+      <div class="tier-block">
+        <h2>Smaller Sponsors</h2>
+        <div class="sponsor-grid">
+          <figure class="sponsor-card"><img src="Images/Sponsor Logos/Small Sponsors/American_Society_of_Mechanical_Engineers_logo.svg" alt="ASME logo"><figcaption>ASME</figcaption></figure>
+          <figure class="sponsor-card"><img src="Images/Sponsor Logos/Small Sponsors/Highmark.svg" alt="Highmark logo"><figcaption>Highmark</figcaption></figure>
+          <figure class="sponsor-card sponsor-card-placeholder"><div class="logo-placeholder">Michigan Scientific</div><figcaption>Michigan Scientific</figcaption></figure>
+          <figure class="sponsor-card"><img src="Images/Sponsor Logos/Small Sponsors/Nucor.svg" alt="Nucor logo"><figcaption>Nucor</figcaption></figure>
+          <figure class="sponsor-card sponsor-card-placeholder"><div class="logo-placeholder">Odrive</div><figcaption>Odrive</figcaption></figure>
+          <figure class="sponsor-card"><img src="Images/Sponsor Logos/Small Sponsors/Phoenix Heat Treat.svg" alt="Phoenix Heat Treat logo"><figcaption>Phoenix Heat Treat</figcaption></figure>
+          <figure class="sponsor-card"><img src="Images/Sponsor Logos/Small Sponsors/Skradski Family.svg" alt="Skradski Family logo"><figcaption>Skradski Family</figcaption></figure>
+          <figure class="sponsor-card"><img src="Images/Sponsor Logos/Small Sponsors/Willem Peters.svg" alt="Willem Peters logo"><figcaption>Willem Peters</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
+  </main>
+</body>
+</html>
