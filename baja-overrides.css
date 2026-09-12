@@ -33,6 +33,16 @@ main {
 .hero-card { 
   border-radius: 12px; 
 }
+.button-group {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  justify-content: center;
+}
+.button-group .featured-button {
+  grid-column: 1 / span 2;
+  width: 100%;
+  box-sizing: border-box;
+}
 @media (max-width: 768px) { 
   .hero { padding: 2rem; } 
 }
