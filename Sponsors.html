@@ -17,16 +17,33 @@
   <link rel="stylesheet" href="baja-overrides.css" />
   <script src="baja-favicon.js"></script>
   <style>
-    .sponsor-image {
-      justify-content: center;
-      margin-top: 1rem;
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
-    .sponsor-image img {
-      width: 400px;
-      height: auto;
-      border-radius: 32px;
-      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.25);
+    .row {
+      display: flex;
+      align-items: center; /* Vertically centers text next to the image */
+      gap: 20px;           /* Space between image and text */
+    }
+
+    .teir1 {
+      width: 400px;        /* Set your preferred image width */
+    }
+
+    .teir2 {
+      width: 300px
+    }
+
+    .teir3 {
+      width: 200px;        /* Set your preferred image width */
+    }
+
+    .teir4 {
+      width: 100px
     }
   </style>
 </head>
@@ -58,12 +75,19 @@
     <section class="hero">
       <div class="hero-content">
         <h1>Our Sponsors Make This Possible</h1>
-        <p>We value each and every sponsor who supports our team and helps us grow as engineers outside of the classroom.</p>
+        <p>We value each and every sponsor, past and present, who supports our team and helps us grow as engineers outside of the classroom.</p>
       </div>
 
-      <div class="sponsor-image">
-        <img src="Images/Sponsor Logos/Big Sponsors/3dconnexion.png" alt="Sponsor image">
-        <img src="Images/Sponsor Logos/Big Sponsors/kisssoft_logo_grey_rgb.png" alt="Sponsor image">
+      <div class="container">
+        <div class = "row">
+          <a href="https://www.3dconnexion.com/">
+            <img src="Images/Sponsor Logos/Teir 2/3dconnexion.png" alt="Sponsor image" class = "teir2">
+          </a>
+          <p>3Dconnexion provided the team with SpaceMouse Wireless for smoother workflows in solidworks this year</p>
+        </div>
+        <div class = "row">
+          <img src="Images/Sponsor Logos/Teir 1/kisssoft_logo_grey_rgb.png" alt="Sponsor image" class = "teir1">
+        </div>
       </div>
     </section>
 
