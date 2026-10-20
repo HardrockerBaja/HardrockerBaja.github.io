@@ -1,59 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <base href="https://baja.hardrocker.racing/" />
   <link rel="canonical" href="https://baja.hardrocker.racing/" />
   <title>LEADERSHIP</title>
-  
+
   <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace.js"></script>
   <script type="module">
     import { setBasePath } from 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/utilities/base-path.js';
     setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist');
   </script>
-  
+
   <link rel="stylesheet" href="https://hardrocker.racing/master.css" />
   <link rel="stylesheet" href="baja-overrides.css" />
   <style>
     .leadership-page {
       /*max-width: 1200px;*/
       margin: 0 auto;
-      padding: 3rem 2rem 4rem;
     }
 
     .leadership-section {
-      margin-bottom: 2.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-
-    .leadership-row-label {
-      margin: 0 0 1.25rem;
-      color: #f9d56e;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 1.1rem;
       text-align: center;
     }
 
-    .leadership-row {
+    .leadership-row-label {
       display: flex;
-      flex-wrap: nowrap;
-      justify-content: center;
-      align-items: end;
-      gap: 1.5rem 1rem;
-      overflow-x: auto;
-      padding-bottom: 0.5rem;
+      min-height: 300px;
       width: 100%;
+      color: #f9d56e;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      font-size: 7rem;
+      align-items: center;
+      padding-top: 0rem;
+      margin: 0.2;
+      padding-left: 1.7rem;
+      text-align: left;
     }
 
-    .leadership-row.solo-row {
+    .design-row-label {
+      display: flex;
+      min-height: 300px;
+      width: 100%;
+      color: #f9d56e;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      font-size: 7rem;
+      align-items: center;
+      padding-top: 0rem;
+      margin: 0.2;
+      padding-right: 1rem;
+      justify-content: flex-end;
+      text-align: right;
+    }
+
+    .leadership-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1.5fr));
       justify-content: center;
-      margin-top: 0.75rem;
-      margin-bottom: 1rem;
-      padding-top: 0.5rem;
+      align-items: end;
+      gap: 3rem 3rem;
+      overflow-x: auto;
+      padding-bottom: 2rem;
+      padding-top: 2rem;
+      width: 100%;
     }
 
     .design-row,
@@ -62,7 +78,7 @@
     }
 
     .headshot-card.featured {
-      margin-top: 0.25rem;
+      margin-top: 0.15rem;
       margin-bottom: 0.5rem;
     }
 
@@ -70,7 +86,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.75rem;
+      margin-bottom: .25rem;
+      gap: .3 rem;
       text-align: center;
       flex: 0 0 auto;
     }
@@ -81,16 +98,11 @@
       aspect-ratio: 1;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid rgba(249, 213, 110, 0.8);
-      transition: transform 0.2s ease;
+
     }
-    
-    .headshot-card:hover .headshot-slot{
-      border: 5px solid rgb(249, 213, 110);
-    }
-    
-    .headshot-card.featured .headshot-slot {
-      box-shadow: 0 0 0 2px rgba(249, 213, 110, 0.9), 0 0 18px rgba(249, 213, 110, 0.28);
+
+    .headshot-card:hover .headshot-slot {
+      box-shadow: 0 0 0 4px rgb(249, 213, 110);
     }
 
     .headshot-label {
@@ -98,7 +110,7 @@
       width: 100%;
       text-align: center;
       color: #f5f5f5;
-      font-size: 0.9rem;
+      font-size: 1.5rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
@@ -108,7 +120,7 @@
       width: 100%;
       text-align: center;
       color: #f5f5f5;
-      font-size: 0.8rem;
+      font-size: 1rem;
       letter-spacing: 0.04em;
     }
 
@@ -135,10 +147,11 @@
   </style>
   <script src="baja-favicon.js"></script>
 </head>
+
 <body>
-  
+
   <div id="navbar-placeholder"></div>
-  
+
   <script>
     fetch('navbar-baja.html')
       .then(response => {
@@ -148,113 +161,149 @@
       .then(html => {
         const navFragment = document.createRange().createContextualFragment(html);
         const placeholder = document.getElementById('navbar-placeholder');
-        
+
         placeholder.innerHTML = '';
         placeholder.appendChild(navFragment);
       })
       .catch(error => {
         console.warn(error);
-        document.getElementById('navbar-placeholder').innerHTML = 
+        document.getElementById('navbar-placeholder').innerHTML =
           '<div style="padding: 1rem; text-align: center; background: #222; color: #f9d56e;">Navigation failed to load. <a href="/" style="color: white;">Go to Home</a></div>';
       });
   </script>
-  
+
   <main class="leadership-page">
+
     <section class="leadership-section" aria-labelledby="officers-heading">
-      <h1 id="officers-heading" class="leadership-row-label">Officers</h1>
-      <div class="leadership-row solo-row">
-        <div class="headshot-card featured">
-          <img class="headshot-slot" fetchpriority="high" src="Images/Current Leadership/Luke.png" alt="Officer headshot slot 1" />
+
+      <h1 id="officers-heading" class="leadership-row-label"
+        style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('Images/Headers/Exec.jpeg') center center / cover no-repeat fixed;">
+        Officers</h1>
+
+      <div class="leadership-row">
+        <div class="headshot-card">
+          <img class="headshot-slot" fetchpriority="high" src="Images/Current Leadership/Luke.png"
+            alt="Officer headshot slot 1" />
           <span class="headshot-label">President</span>
           <span class="headshot-name">Luke Wilfong</span>
         </div>
-      </div>
-      <div class="leadership-row">
+
         <div class="headshot-card">
-          <img class="headshot-slot" fetchpriority="high" src="Images/Current Leadership/Cole.png" alt="Officer headshot slot 2" />
+          <img class="headshot-slot" fetchpriority="high" src="Images/Current Leadership/Cole.png"
+            alt="Officer headshot slot 2" />
           <span class="headshot-label">Vice President</span>
           <span class="headshot-name">Cole Peterson</span>
         </div>
+
         <div class="headshot-card">
-          <img class="headshot-slot" fetchpriority="high" src="Images/Current Leadership/Nick.png" alt="Officer headshot slot 3" />
+          <img class="headshot-slot" fetchpriority="high" src="Images/Current Leadership/Nick.png"
+            alt="Officer headshot slot 3" />
           <span class="headshot-label">Secretary</span>
           <span class="headshot-name">Nick Costner</span>
         </div>
+
         <div class="headshot-card">
-          <img class="headshot-slot" fetchpriority="high" src="Images/Current Leadership/Will.png" alt="Officer headshot slot 4" />
+          <img class="headshot-slot" fetchpriority="high" src="Images/Current Leadership/Will.png"
+            alt="Officer headshot slot 4" />
           <span class="headshot-label">Treasurer</span>
           <span class="headshot-name">William Harvey</span>
         </div>
+
+      </div>
+
+      <div class="leadership-row">
+
         <div class="headshot-card">
-          <img class="headshot-slot" fetchpriority="high" src="Images/Current Leadership/Henery.png" alt="Officer headshot slot 5" />
+          <a href="https://www.linkedin.com/in/henry-becker-kc" target="_blank" rel="noopener noreferrer"></a>
+          <img class="headshot-slot" fetchpriority="high" src="Images/Current Leadership/Henery.png"
+            alt="Officer headshot slot 5" />
+          </a>
           <span class="headshot-label">Manufacturing Lead</span>
           <span class="headshot-name">Henry Becker</span>
         </div>
+
         <div class="headshot-card">
-          <img class="headshot-slot" fetchpriority="high" src="Images/Current Leadership/BigJohn.png" alt="Officer headshot slot 6" />
+          <img class="headshot-slot" fetchpriority="high" src="Images/Current Leadership/BigJohn.png"
+            alt="Officer headshot slot 6" />
           <span class="headshot-label">Project Manager</span>
           <span class="headshot-name">John Dille</span>
         </div>
+
         <div class="headshot-card">
-          <img class="headshot-slot" fetchpriority="high" src="Images/Current Leadership/Elijah.png" alt="Officer headshot slot 7" />
+          <img class="headshot-slot" fetchpriority="high" src="Images/Current Leadership/Elijah.png"
+            alt="Officer headshot slot 7" />
           <span class="headshot-label">Media Manager</span>
           <span class="headshot-name">Elijah Stow</span>
         </div>
+
         <div class="headshot-card">
-          <img class="headshot-slot" fetchpriority="high" src="Images/Current Leadership/Jack.png" alt="Officer headshot slot 8" />
+          <img class="headshot-slot" fetchpriority="high" src="Images/Current Leadership/Jack.png"
+            alt="Officer headshot slot 8" />
           <span class="headshot-label">Shop Safety Manager</span>
           <span class="headshot-name">Colby Fiechtner</span>
         </div>
+
+      </div>
       </div>
     </section>
 
     <section class="leadership-section" aria-labelledby="design-leads-heading">
-      <h1 id="design-leads-heading" class="leadership-row-label">Design Leads</h1>
-      <div class="leadership-row solo-row design-row">
-        <div class="headshot-card featured">
+      <h1 id="design-leads-heading" class="design-row-label"
+        style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('Images/Headers/Team.jpeg') center center / cover no-repeat fixed;">
+        Design Leads</h1>
+
+      <div class="leadership-row">
+        <div class="headshot-card">
           <img class="headshot-slot" fetchpriority="med" src="Images/Current Leadership/Potter.png" alt="Design lead" />
           <span class="headshot-label">Design Lead</span>
           <span class="headshot-name">Potter Giese</span>
         </div>
-      </div>
-      <div class="leadership-row design-remaining-row">
+
         <div class="headshot-card">
-          <img class="headshot-slot"  src="Images/Current Leadership/Rylend.png" alt="Brake lead" />
+          <img class="headshot-slot" src="Images/Current Leadership/Rylend.png" alt="Brake lead" />
           <span class="headshot-label">Brake Lead</span>
           <span class="headshot-name">Rylend Brunick</span>
         </div>
+
         <div class="headshot-card">
-          <img class="headshot-slot"  src="Images/Current Leadership/Jack.png" alt="Ergonomics lead" />
+          <img class="headshot-slot" src="Images/Current Leadership/Jack.png" alt="Ergonomics lead" />
           <span class="headshot-label">Ergonomics Lead</span>
           <span class="headshot-name">Colby Fiechtner</span>
         </div>
+
         <div class="headshot-card">
-          <img class="headshot-slot"   src="Images/Current Leadership/Elijah.png" alt="Drivetrain lead" />
+          <img class="headshot-slot" src="Images/Current Leadership/Elijah.png" alt="Drivetrain lead" />
           <span class="headshot-label">Drivetrain Lead</span>
           <span class="headshot-name">Elijah Stow</span>
         </div>
+      </div>
+      <div class="leadership-row">
         <div class="headshot-card">
-          <img class="headshot-slot"  src="Images/Current Leadership/BigJohn.png" alt="Chassis lead" />
+          <img class="headshot-slot" src="Images/Current Leadership/BigJohn.png" alt="Chassis lead" />
           <span class="headshot-label">Chassis Lead</span>
           <span class="headshot-name">John Dille</span>
         </div>
+
         <div class="headshot-card">
-          <img class="headshot-slot"  src="Images/Current Leadership/Henery.png" alt="Suspension lead" />
+          <img class="headshot-slot" src="Images/Current Leadership/Henery.png" alt="Suspension lead" />
           <span class="headshot-label">Suspension Lead</span>
           <span class="headshot-name">Henry Becker</span>
         </div>
+
         <div class="headshot-card">
-          <img class="headshot-slot"  src="Images/Current Leadership/Reid.png" alt="Testing lead" />
+          <img class="headshot-slot" src="Images/Current Leadership/Reid.png" alt="Testing lead" />
           <span class="headshot-label">Testing Lead</span>
           <span class="headshot-name">Reid Ammon</span>
         </div>
+
         <div class="headshot-card">
-          <img class="headshot-slot"  src="Images/Current Leadership/Baylor.png" alt="Materials lead" />
+          <img class="headshot-slot" src="Images/Current Leadership/Baylor.png" alt="Materials lead" />
           <span class="headshot-label">Materials Lead</span>
-          <span class="headshot-name">Baylor Larson</span>
+          <span class="headshot-name">Bayler Larson</span>
         </div>
       </div>
     </section>
   </main>
 </body>
+
 </html>
