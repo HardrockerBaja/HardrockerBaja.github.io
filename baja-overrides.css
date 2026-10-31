@@ -1,15 +1,15 @@
-/* FIX 1: Reserve space for the navbar to prevent the page from jumping 
+/* Reserve space for the navbar to prevent the page from jumping
    when the fetch completes. Adjust the 60px to match your actual navbar height.
 */
 #navbar-placeholder {
-  min-height: 60px; 
+  min-height: 60px;
   width: 100%;
 }
-
+ 
 /* Baja-specific overrides (minimal). Most styles are shared from the central master.css */
-main { 
-  margin: 0; 
-  padding: 0; 
+main {
+  margin: 0;
+  padding: 0;
 }
 .hero {
   padding: 2rem 4rem;
@@ -20,64 +20,72 @@ main {
   position: relative;
   overflow: hidden;
 }
-.brand a { 
-  font-size: 1.1rem; 
-  color: #f9d56e; 
-  text-decoration: none; 
-  letter-spacing: 0.08em; 
-  text-transform: uppercase; 
+.brand a {
+  font-size: 1.1rem;
+  color: #f9d56e;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
-.navbar { 
-  border-bottom: none; 
+.navbar {
+  border-bottom: none;
 }
-.hero-card { 
-  border-radius: 12px; 
+.hero-card {
+  border-radius: 12px;
 }
-@media (max-width: 768px) { 
-  .hero { padding: 2rem; } 
+@media (max-width: 768px) {
+  .hero { padding: 2rem; }
 }
-/* Mobile Fixes for Screens Smaller than 600px */
+ 
+/* Mobile fixes for screens 600px and smaller */
 @media screen and (max-width: 600px) {
+  /* Header: stack the two link groups vertically */
   header.navbar {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    padding: 1rem !important;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 1rem;
   }
-
-  .navbar nav {
-    display: flex !important;
-    width: 100% !important;
-    flex-direction: column !important;
+ 
+  /* Both groups (Sponsors/Leadership/Team History and Home/Baja/Formula)
+     stack their links in a full-width column */
+  header.navbar .brand,
+  header.navbar nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
   }
-
-  .navbar a {
-    display: block !important;
-    width: 100% !important;
-    text-align: center !important;
-    box-sizing: border-box !important;
+ 
+  /* All six links get the same full-width, easy-to-tap button look */
+  header.navbar a {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 0.75rem 1rem;
   }
-
+ 
   main {
     padding: 1rem 1rem 2rem !important;
   }
-
+ 
   .hero {
     display: block !important;
     padding: 1.5rem 1rem !important;
     grid-template-columns: 1fr !important;
   }
-
+ 
   .button-group {
     display: flex !important;
     flex-direction: column !important;
     width: 100% !important;
     gap: 0.75rem !important;
   }
-
+ 
   .button-group a {
     width: 100% !important;
     display: block !important;
   }
-  
 }
