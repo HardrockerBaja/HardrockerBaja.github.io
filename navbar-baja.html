@@ -1,4 +1,89 @@
+<style>
+  /* Hamburger button: hidden on desktop */
+  .nav-toggle {
+    display: none;
+  }
+
+  @media screen and (max-width: 600px) {
+    header.navbar {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0.5rem 1rem;
+    }
+    header.navbar.open {
+      gap: 0.5rem;
+      padding-bottom: 1rem;
+    }
+
+    /* Hamburger button (top right) */
+    .nav-toggle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      align-self: flex-end;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      background: none;
+      border: 0;
+      cursor: pointer;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 3px;
+      background: #f9d56e;
+      border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    /* Turns into an X when open */
+    header.navbar.open .nav-toggle span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    header.navbar.open .nav-toggle span:nth-child(2) {
+      opacity: 0;
+    }
+    header.navbar.open .nav-toggle span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Links are hidden until the menu is open */
+    header.navbar .brand,
+    header.navbar nav {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      gap: 0.25rem;
+      height: auto;
+    }
+    header.navbar.open .brand,
+    header.navbar.open nav {
+      display: flex;
+    }
+
+    header.navbar .brand a,
+    header.navbar nav a {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: left;
+      padding: 0.75rem 0.5rem;
+      position: static;
+      z-index: auto;
+    }
+  }
+</style>
+
 <header class="navbar">
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
   <div class="brand">
     <a href="Sponsors">Sponsors</a>
     <a href="Leadership">Leadership</a>
@@ -10,3 +95,30 @@
     <a href="https://formula.hardrocker.racing/">Formula</a>
   </nav>
 </header>
+
+<script>
+  (function () {
+    var header = document.querySelector('header.navbar');
+    var btn = header && header.querySelector('.nav-toggle');
+    if (!btn) return;
+
+    function setOpen(open) {
+      header.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+
+    btn.addEventListener('click', function () {
+      setOpen(!header.classList.contains('open'));
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+
+    // Reset if the window is widened back to desktop size
+    window.matchMedia('(min-width: 601px)').addEventListener('change', function (e) {
+      if (e.matches) setOpen(false);
+    });
+  })();
+</script>
