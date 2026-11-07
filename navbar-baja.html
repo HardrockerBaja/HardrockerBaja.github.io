@@ -4,7 +4,17 @@
     display: none;
   }
 
+  /* Hide mobile sub-links on Desktop */
+  .sub-links {
+    display: none;
+  }
+
   @media screen and (max-width: 600px) {
+    /* Hide desktop brand links on mobile */
+    header.navbar .brand {
+      display: none;
+    }
+
     header.navbar {
       display: flex;
       flex-direction: column;
@@ -52,7 +62,6 @@
     }
 
     /* Links are hidden until the menu is open */
-    header.navbar .brand,
     header.navbar nav {
       display: none;
       flex-direction: column;
@@ -60,15 +69,12 @@
       gap: 0.25rem;
       height: auto;
     }
-    header.navbar.open .brand,
     header.navbar.open nav {
       display: flex;
     }
     .nav-toggle { order: 0; }
     header.navbar nav { order: 1; }
-    header.navbar .brand { order: 2; }
 
-    header.navbar .brand a,
     header.navbar nav a {
       display: block;
       width: 100%;
@@ -77,6 +83,24 @@
       padding: 0.75rem 0.5rem;
       position: static;
       z-index: auto;
+    }
+
+    /* Show sub-links stacked and indented directly under Baja on mobile */
+    .sub-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding-left: 1.25rem;
+    }
+
+    .sub-links a {
+      font-size: 0.9rem;
+      color: #f9d56e;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      padding: 0.5rem 0.75rem;
     }
   }
 </style>
@@ -87,21 +111,23 @@
     <span></span>
     <span></span>
   </button>
-  <nav>
-  <a href="https://hardrocker.racing/">Home</a>
-
-  <!-- Baja + Sub-links grouped together -->
-  <div class="baja-group">
-    <a class="active" href="https://baja.hardrocker.racing/">Baja</a>
-    <div class="sub-links">
-      <a href="Sponsors">Sponsors</a>
-      <a href="Leadership">Leadership</a>
-      <a href="team-history">Team History</a>
-    </div>
+  <div class="brand">
+    <a href="Sponsors">Sponsors</a>
+    <a href="Leadership">Leadership</a>
+    <a href="team-history">Team History</a>
   </div>
-
-  <a href="https://formula.hardrocker.racing/">Formula</a>
-</nav>
+  <nav>
+    <a href="https://hardrocker.racing/">Home</a>
+    <div class="baja-group">
+      <a class="active" href="https://baja.hardrocker.racing/">Baja</a>
+      <div class="sub-links">
+        <a href="Sponsors">Sponsors</a>
+        <a href="Leadership">Leadership</a>
+        <a href="team-history">Team History</a>
+      </div>
+    </div>
+    <a href="https://formula.hardrocker.racing/">Formula</a>
+  </nav>
 </header>
 
 <script>
