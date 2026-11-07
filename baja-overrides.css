@@ -37,19 +37,19 @@ main {
   .hero { padding: 2rem; }
 }
 
-/* Hide mobile sub-links on Desktop so Desktop remains completely unchanged */
-.sub-links {
-  display: none;
+/* Ensure desktop container behaves like an inline item inside nav */
+.baja-group {
+  display: inline-flex;
+  flex-direction: column;
 }
- 
+
 /* Mobile fixes for screens 600px and smaller */
 @media screen and (max-width: 600px) {
-  /* Hide desktop brand links on mobile */
-  header.navbar .brand {
-    display: none;
+  .baja-group {
+    display: flex;
+    width: 100%;
   }
 
-  /* Header layout */
   header.navbar {
     display: flex;
     flex-direction: column;
@@ -65,31 +65,12 @@ main {
     gap: 0.5rem;
   }
  
-  /* Navigation links get a full-width block layout */
   header.navbar nav a {
     display: block;
     width: 100%;
     box-sizing: border-box;
     text-align: left;
     padding: 0.75rem 1rem;
-  }
-
-  /* Show sub-links stacked and indented slightly under Baja on mobile */
-  .sub-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    padding-left: 1.25rem;
-  }
-
-  .sub-links a {
-    font-size: 0.9rem;
-    color: #f9d56e;
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    opacity: 0.9;
-    padding: 0.5rem 0.75rem;
   }
  
   main {
