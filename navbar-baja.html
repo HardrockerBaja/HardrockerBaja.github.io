@@ -10,9 +10,9 @@
   }
 
   @media screen and (max-width: 600px) {
-    /* Hide desktop brand links on mobile */
+    /* Hide desktop brand section on mobile */
     header.navbar .brand {
-      display: none;
+      display: none !important;
     }
 
     header.navbar {
@@ -61,7 +61,7 @@
       transform: translateY(-8px) rotate(-45deg);
     }
 
-    /* Links are hidden until the menu is open */
+    /* Links hidden until menu opens */
     header.navbar nav {
       display: none;
       flex-direction: column;
@@ -72,8 +72,6 @@
     header.navbar.open nav {
       display: flex;
     }
-    .nav-toggle { order: 0; }
-    header.navbar nav { order: 1; }
 
     header.navbar nav a {
       display: block;
@@ -81,11 +79,9 @@
       box-sizing: border-box;
       text-align: left;
       padding: 0.75rem 0.5rem;
-      position: static;
-      z-index: auto;
     }
 
-    /* Show sub-links stacked and indented directly under Baja on mobile */
+    /* Show sub-links stacked & indented under Baja on mobile */
     .sub-links {
       display: flex;
       flex-direction: column;
@@ -94,13 +90,13 @@
     }
 
     .sub-links a {
-      font-size: 0.9rem;
+      font-size: 0.9em;
       color: #f9d56e;
       text-decoration: none;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       opacity: 0.9;
-      padding: 0.5rem 0.75rem;
+      padding: 0.5rem 0.5rem;
     }
   }
 </style>
@@ -111,13 +107,19 @@
     <span></span>
     <span></span>
   </button>
+
+  <!-- Left side on Desktop (Original Brand links) -->
   <div class="brand">
     <a href="Sponsors">Sponsors</a>
     <a href="Leadership">Leadership</a>
     <a href="team-history">Team History</a>
   </div>
+
+  <!-- Right side navigation -->
   <nav>
     <a href="https://hardrocker.racing/">Home</a>
+    
+    <!-- Baja Link + Mobile Sub-links wrapper -->
     <div class="baja-group">
       <a class="active" href="https://baja.hardrocker.racing/">Baja</a>
       <div class="sub-links">
@@ -126,6 +128,7 @@
         <a href="team-history">Team History</a>
       </div>
     </div>
+
     <a href="https://formula.hardrocker.racing/">Formula</a>
   </nav>
 </header>
@@ -150,7 +153,6 @@
       if (e.key === 'Escape') setOpen(false);
     });
 
-    // Reset if the window is widened back to desktop size
     window.matchMedia('(min-width: 601px)').addEventListener('change', function (e) {
       if (e.matches) setOpen(false);
     });
