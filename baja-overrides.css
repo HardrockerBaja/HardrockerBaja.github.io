@@ -36,10 +36,20 @@ main {
 @media (max-width: 768px) {
   .hero { padding: 2rem; }
 }
+
+/* Hide mobile sub-links on Desktop so Desktop remains completely unchanged */
+.sub-links {
+  display: none;
+}
  
 /* Mobile fixes for screens 600px and smaller */
 @media screen and (max-width: 600px) {
-  /* Header: stack the two link groups vertically */
+  /* Hide desktop brand links on mobile */
+  header.navbar .brand {
+    display: none;
+  }
+
+  /* Header layout */
   header.navbar {
     display: flex;
     flex-direction: column;
@@ -48,9 +58,6 @@ main {
     padding: 1rem;
   }
  
-  /* Both groups (Sponsors/Leadership/Team History and Home/Baja/Formula)
-     stack their links in a full-width column */
-  header.navbar .brand,
   header.navbar nav {
     display: flex;
     flex-direction: column;
@@ -58,13 +65,31 @@ main {
     gap: 0.5rem;
   }
  
-  /* All six links get the same full-width, easy-to-tap button look */
-  header.navbar a {
+  /* Navigation links get a full-width block layout */
+  header.navbar nav a {
     display: block;
     width: 100%;
     box-sizing: border-box;
-    text-align: center;
+    text-align: left;
     padding: 0.75rem 1rem;
+  }
+
+  /* Show sub-links stacked and indented slightly under Baja on mobile */
+  .sub-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-left: 1.25rem;
+  }
+
+  .sub-links a {
+    font-size: 0.9rem;
+    color: #f9d56e;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.9;
+    padding: 0.5rem 0.75rem;
   }
  
   main {
