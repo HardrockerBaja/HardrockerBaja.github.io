@@ -1,16 +1,18 @@
-/* Reserve space for the navbar to prevent the page from jumping
-   when the fetch completes. Adjust the 60px to match your actual navbar height.
-*/
+/* ==========================================
+   1. NAVBAR & LAYOUT OVERRIDES
+   ========================================== */
+
+/* Reserve space for the navbar to prevent page jumping */
 #navbar-placeholder {
   min-height: 60px;
   width: 100%;
 }
- 
-/* Baja-specific overrides (minimal). Most styles are shared from the central master.css */
+
 main {
   margin: 0;
   padding: 0;
 }
+
 .hero {
   padding: 2rem 4rem;
   display: grid;
@@ -20,6 +22,7 @@ main {
   position: relative;
   overflow: hidden;
 }
+
 .brand a {
   font-size: 1.1rem;
   color: #f9d56e;
@@ -27,14 +30,13 @@ main {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+
 .navbar {
   border-bottom: none;
 }
+
 .hero-card {
   border-radius: 12px;
-}
-@media (max-width: 768px) {
-  .hero { padding: 2rem; }
 }
 
 /* Ensure desktop container behaves like an inline item inside nav */
@@ -43,11 +45,20 @@ main {
   flex-direction: column;
 }
 
-/* Mobile fixes for screens 600px and smaller */
+/* Hide mobile sub-links on Desktop */
+.sub-links {
+  display: none;
+}
+
+
+/* ==========================================
+   2. MOBILE NAVBAR FIXES (600px and smaller)
+   ========================================== */
+
 @media screen and (max-width: 600px) {
-  .baja-group {
-    display: flex;
-    width: 100%;
+  /* Hide desktop brand links on mobile */
+  header.navbar .brand {
+    display: none !important;
   }
 
   header.navbar {
@@ -72,6 +83,29 @@ main {
     text-align: left;
     padding: 0.75rem 1rem;
   }
+
+  .baja-group {
+    display: flex;
+    width: 100%;
+  }
+
+  /* Show sub-links stacked and indented directly under Baja on mobile */
+  .sub-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-left: 1.25rem;
+  }
+
+  .sub-links a {
+    font-size: 0.9rem;
+    color: #f9d56e;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.9;
+    padding: 0.5rem 0.75rem;
+  }
  
   main {
     padding: 1rem 1rem 2rem !important;
@@ -93,5 +127,78 @@ main {
   .button-group a {
     width: 100% !important;
     display: block !important;
+  }
+}
+
+
+/* ==========================================
+   3. LEADERSHIP PAGE MOBILE FIXES
+   ========================================== */
+
+@media (max-width: 768px) {
+  .hero { 
+    padding: 2rem; 
+  }
+
+  .leadership-page {
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  /* Fix section background headers on mobile */
+  .leadership-row-label,
+  .design-row-label {
+    font-size: 2.2rem !important;
+    min-height: 100px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 1rem !important;
+    justify-content: center !important;
+    text-align: center !important;
+    background-attachment: scroll !important; /* Disables fixed attachment which breaks mobile viewport */
+    background-size: cover !important;
+    background-position: center !important;
+    margin: 0 !important;
+  }
+
+  /* 2-Column Grid for headshots */
+  .leadership-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem 1rem !important;
+    padding: 1.5rem 0.5rem !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+
+  .headshot-slot {
+    width: 90px !important;
+  }
+
+  .headshot-label {
+    font-size: 0.85rem !important;
+  }
+
+  .headshot-name {
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .leadership-row-label,
+  .design-row-label {
+    font-size: 1.75rem !important;
+    min-height: 80px !important;
+  }
+
+  .headshot-slot {
+    width: 75px !important;
+  }
+
+  .headshot-label {
+    font-size: 0.75rem !important;
+  }
+
+  .headshot-name {
+    font-size: 0.8rem !important;
   }
 }
