@@ -4,6 +4,10 @@
     display: none;
   }
 
+  .mobile-home {
+    display: none;
+  }
+
   /* Hide mobile sub-links on Desktop */
   .sub-links {
     display: none;
@@ -17,14 +21,24 @@
 
     header.navbar {
       display: flex;
-      flex-direction: column;
-      align-items: stretch;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
       gap: 0;
       padding: 0.5rem 1rem;
     }
     header.navbar.open {
       gap: 0.5rem;
       padding-bottom: 1rem;
+    }
+
+    .mobile-home {
+      display: block;
+      color: #f9d56e;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.75rem 0.5rem;
     }
 
     /* Hamburger button (top right) */
@@ -34,7 +48,8 @@
       align-items: center;
       justify-content: center;
       gap: 5px;
-      align-self: flex-end;
+      align-self: center;
+      margin-left: auto;
       width: 44px;
       height: 44px;
       padding: 0;
@@ -81,6 +96,10 @@
       padding: 0.75rem 0.5rem;
     }
 
+    header.navbar nav > a:first-child {
+      display: none;
+    }
+
     /* Show sub-links stacked & indented under Baja on mobile */
     .sub-links {
       display: flex;
@@ -102,6 +121,8 @@
 </style>
 
 <header class="navbar">
+  <a class="mobile-home" href="https://hardrocker.racing/">Home</a>
+
   <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
     <span></span>
     <span></span>
