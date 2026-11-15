@@ -1,4 +1,4 @@
-baja.hardrocker.racing
-baja.hardrocker.racing/Sponsors
-baja.hardrocker.racing/Leadership
-baja.hardrocker.racing/team-history
+https://baja.hardrocker.racing/
+https://baja.hardrocker.racing/Sponsors
+https://baja.hardrocker.racing/Leadership
+https://baja.hardrocker.racing/team-histo
