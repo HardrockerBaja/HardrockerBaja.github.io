@@ -14,12 +14,14 @@
   </script>
 
   <link rel="stylesheet" href="https://hardrocker.racing/master.css" />
-  <link rel="stylesheet" href="baja-overrides.css" />
+ <link rel="stylesheet" href="baja-overrides.css" />*/
   <script src="baja-favicon.js"></script>
 
   <style>
     /* All tiers stacked vertically, centered */
     #sponsors {
+      max-width: 5000px;   /* the box; adjust to taste */
+      margin: 0 auto;      /* keeps it centered */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -135,7 +137,7 @@
     ];
 
     // Logo width in pixels for each tier
-    const tierWidths = { 1: 400, 2: 300, 3: 200, 4: 100 };
+    const tierWidths = { 1: 600, 2: 300, 3: 200, 4: 100 };
 
     const root = document.getElementById('sponsors');
 
