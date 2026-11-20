@@ -29,6 +29,16 @@
       width: 100%;
     }
 
+    .sponsor-text {
+      display: inline-block;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.1;
+      color: #ffffff;
+    }
+
     /* One row per tier; wraps when there are many logos or on small screens */
     .sponsor-tier {
       display: flex;
@@ -133,57 +143,94 @@
         blurb: "SolidWorks provides industry-leading 3D cad software where we can model and simulate complex components, bringing our ideas into reality."
       },
 
-      { name: "3Dconnexion", tier: 3, logo: "Images/Sponsor Logos/Teir 2/3dconnexion.svg", url: "https://www.3dconnexion.com/" },
+      { name: "3Dconnexion", tier: 3, logo: "Images/Sponsor Logos/Teir 3/3dconnexion.svg", url: "https://www.3dconnexion.com/" },
+      { name: "Harvey Lawncare", tier: 3 },
     ];
 
-    // Logo width in pixels for each tier
-    const tierWidths = { 1: 600, 2: 300, 3: 200, 4: 100 };
+// Logo box and text size for each tier (px)
+  const tierSizes = {
+    1: { w: 400, h: 160, font: 64 },
+    2: { w: 300, h: 120, font: 48 },
+    3: { w: 200, h: 80,  font: 32 },
+    4: { w: 100, h: 40,  font: 18 },
+  };
 
-    const root = document.getElementById('sponsors');
+  const logoRoot = "Images/Sponsor Logos/";
+  const logoPath = s => s.logo.includes('/') ? s.logo : `${logoRoot}Teir ${s.tier}/${s.logo}`;
 
-    [1, 2, 3, 4].forEach(tier => {
-      const group = sponsors.filter(s => s.tier === tier);
-      if (!group.length) return;
+  // The sponsor's name styled as a logo
+  function makeText(s) {
+    const { w, font } = tierSizes[s.tier];
+    const span = document.createElement('span');
+    span.className = 'sponsor-text';
+    span.textContent = s.name;
+    span.style.fontSize = font + 'px';
+    span.style.maxWidth = w + 'px';
+    return span;
+  }
 
-      const row = document.createElement('div');
-      row.className = 'sponsor-tier tier-' + tier;
+  // The sponsor's image, falling back to text if it can't load
+  function makeImage(s) {
+    const { w, h } = tierSizes[s.tier];
+    const img = document.createElement('img');
+    img.src = logoPath(s);
+    img.alt = s.name;
+    img.loading = 'lazy';
+    img.style.width = w + 'px';
+    img.style.height = h + 'px';
+    img.style.objectFit = 'contain';
+    img.onerror = () => {
+      console.warn(`Logo for "${s.name}" failed to load (${img.src}). Showing its name instead.`);
+      img.replaceWith(makeText(s));
+    };
+    return img;
+  }
 
-      group.forEach(s => {
-        const img = document.createElement('img');
-        img.src = s.logo;
-        img.alt = s.name;
-        img.loading = 'lazy';
-        img.style.width = tierWidths[tier] + 'px';
+  // Catch typos like "teir: 1" instead of letting the sponsor silently vanish
+  sponsors
+    .filter(s => !tierSizes[s.tier])
+    .forEach(s => console.warn(`Sponsor "${s.name}" has no valid tier (1-4), so it won't be shown.`));
 
-        let el = img;
-        if (s.url) {
-          el = document.createElement('a');
-          el.href = s.url;
-          el.target = '_blank';
-          el.rel = 'noopener noreferrer';
-          el.appendChild(img);
-        }
+  const root = document.getElementById('sponsors');
 
-        // If the sponsor has a blurb, put the text beside the logo
-        if (s.blurb) {
-          const feature = document.createElement('div');
-          feature.className = 'sponsor-feature';
+  [1, 2, 3, 4].forEach(tier => {
+    const group = sponsors.filter(s => s.tier === tier);
+    if (!group.length) return;
 
-          const text = document.createElement('p');
-          text.className = 'sponsor-blurb';
-          text.textContent = s.blurb;
+    const row = document.createElement('div');
+    row.className = 'sponsor-tier tier-' + tier;
 
-          feature.appendChild(el);
-          feature.appendChild(text);
-          el = feature;
-        }
+    group.forEach(s => {
+      let el = s.logo ? makeImage(s) : makeText(s);
 
-        row.appendChild(el);
-      });
+      if (s.url) {
+        const link = document.createElement('a');
+        link.href = s.url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.appendChild(el);
+        el = link;
+      }
 
-      root.appendChild(row);
+      if (s.blurb) {
+        const feature = document.createElement('div');
+        feature.className = 'sponsor-feature';
+
+        const text = document.createElement('p');
+        text.className = 'sponsor-blurb';
+        text.textContent = s.blurb;
+
+        feature.appendChild(el);
+        feature.appendChild(text);
+        el = feature;
+      }
+
+      row.appendChild(el);
     });
-  </script>
+
+    root.appendChild(row);
+  });
+</script>
 
 </body>
 </html>
