@@ -4,53 +4,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <base href="https://baja.hardrocker.racing/" />
-  <link rel="canonical" href="https://baja.hardrocker.racing/Sponsors" />
+  <link rel="canonical" href="https://baja.hardrocker.racing/" />
   <title>Sponsors</title>
-  
+
   <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/shoelace.js"></script>
   <script type="module">
     import { setBasePath } from 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist/utilities/base-path.js';
     setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.4.0/dist');
   </script>
-  
+
   <link rel="stylesheet" href="https://hardrocker.racing/master.css" />
   <link rel="stylesheet" href="baja-overrides.css" />
   <script src="baja-favicon.js"></script>
-  <style>
 
-    .container {
+  <style>
+    /* All tiers stacked vertically, centered */
+    #sponsors {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      align-items: center;
+      gap: 40px;
+      width: 100%;
     }
 
-    .row {
+    /* One row per tier; wraps when there are many logos or on small screens */
+    .sponsor-tier {
       display: flex;
-      align-items: center; /* Vertically centers text next to the image */
-      gap: 20px;           /* Space between image and text */
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px 40px;
     }
 
-    .teir1 {
-      width: 400px;        /* Set your preferred image width */
+    /* Tier 1 sponsors each get their own row */
+    .sponsor-tier.tier-1 {
+      flex-direction: column;
+      gap: 40px;
     }
 
-    .teir2 {
-      width: 300px
+    .sponsor-tier img {
+      max-width: 100%;   /* keeps big logos from overflowing on phones */
+      height: auto;
     }
 
-    .teir3 {
-      width: 200px;        
+    /* Logo with text beside it (used when a sponsor has a blurb) */
+    .sponsor-feature {
+      display: flex;
+      flex-wrap: wrap;           /* text drops below the logo on narrow screens */
+      justify-content: center;
+      align-items: center;
+      gap: 20px 40px;
+      max-width: 1000px;
     }
 
-    .teir4 {
-      width: 100px
+    .hero .sponsor-blurb {
+      flex: 1 1 280px;
+      margin: 0;
+      text-align: left;
     }
   </style>
 </head>
 <body>
-  
+
   <div id="navbar-placeholder"></div>
-  
+
   <script>
     fetch('navbar-baja.html')
       .then(response => {
@@ -60,43 +77,111 @@
       .then(html => {
         const navFragment = document.createRange().createContextualFragment(html);
         const placeholder = document.getElementById('navbar-placeholder');
-        
+
         placeholder.innerHTML = '';
         placeholder.appendChild(navFragment);
       })
       .catch(error => {
         console.warn(error);
-        document.getElementById('navbar-placeholder').innerHTML = 
+        document.getElementById('navbar-placeholder').innerHTML =
           '<div style="padding: 1rem; text-align: center; background: #222; color: #f9d56e;">Navigation failed to load. <a href="/" style="color: white;">Go to Home</a></div>';
       });
   </script>
-  
-  <!--Reference the current year's sponsorship tracking spreadsheet for teir levels-->
+
   <main>
     <section class="hero">
       <div class="hero-content">
         <h1>Our Sponsors Make This Possible</h1>
         <p>We value each and every sponsor, past and present, who supports our team and helps us grow as engineers outside of the classroom.</p>
       </div>
-      <!--Teir 1-->
-      <div class="container">
-        <div class = "row">
-          <img src="Images/Sponsor Logos/Teir 1/kisssoft_logo_grey_rgb.png" alt="Sponsor image" class = "teir1">
-          <p>   </p>
-        </div>
-      </div>
-      <!--Teir 3-->
-      <div class="container"> 
-          <a href="https://www.3dconnexion.com/">
-            <img src="Images/Sponsor Logos/Teir 2/3dconnexion.svg" alt="Sponsor image" class = "teir3">
-          </a>
-        </div>
-      </div>
-    </section>
 
+      <!-- Sponsor logos are built from the list in the script below -->
+      <div id="sponsors"></div>
+      <noscript>
+        <p>Please enable JavaScript to see our sponsor logos.</p>
+      </noscript>
+    </section>
   </main>
-</body>
-</html>
-  </main>
+
+  <script>
+    /*
+      Reference the current year's sponsorship tracking spreadsheet for tier levels.
+
+      To add a sponsor, add one line to this list:
+        name  : used for the image's alt text (accessibility)
+        tier  : 1 (largest) through 4 (smallest)
+        logo  : path to the image file
+        url   : optional; makes the logo a link to the sponsor's website
+        blurb : optional; shows this text beside the logo
+    */
+    const sponsors = [
+      {
+        name: "KISSsoft",
+        tier: 1,
+        logo: "Images/Sponsor Logos/Teir 1/kisssoft_logo_grey_rgb.png",
+        url: "https://www.kisssoft.com/",
+        blurb: "KISSsoft provides the tools nessesary for us to develop and itterate uppon our drivetrain, allowing us to design and model gears and shafts and perform complex analysis on them."
+      },
+
+      {
+        name: "Solidworks",
+        teir: 1,
+        logo: "Images/Sponsor Logos/Teri 1/SolidworksBW.png",
+        url: "https://www.solidworks.com/",
+        blurb: "SolidWorks provides industry-leading 3D cad software where we can model and simulate complex components, bringing our ideas into reality."
+      },
+      
+      { name: "3Dconnexion", tier: 3, logo: "Images/Sponsor Logos/Teir 2/3dconnexion.svg", url: "https://www.3dconnexion.com/" },
+    ];
+
+    // Logo width in pixels for each tier
+    const tierWidths = { 1: 400, 2: 300, 3: 200, 4: 100 };
+
+    const root = document.getElementById('sponsors');
+
+    [1, 2, 3, 4].forEach(tier => {
+      const group = sponsors.filter(s => s.tier === tier);
+      if (!group.length) return;
+
+      const row = document.createElement('div');
+      row.className = 'sponsor-tier tier-' + tier;
+
+      group.forEach(s => {
+        const img = document.createElement('img');
+        img.src = s.logo;
+        img.alt = s.name;
+        img.loading = 'lazy';
+        img.style.width = tierWidths[tier] + 'px';
+
+        let el = img;
+        if (s.url) {
+          el = document.createElement('a');
+          el.href = s.url;
+          el.target = '_blank';
+          el.rel = 'noopener noreferrer';
+          el.appendChild(img);
+        }
+
+        // If the sponsor has a blurb, put the text beside the logo
+        if (s.blurb) {
+          const feature = document.createElement('div');
+          feature.className = 'sponsor-feature';
+
+          const text = document.createElement('p');
+          text.className = 'sponsor-blurb';
+          text.textContent = s.blurb;
+
+          feature.appendChild(el);
+          feature.appendChild(text);
+          el = feature;
+        }
+
+        row.appendChild(el);
+      });
+
+      root.appendChild(row);
+    });
+  </script>
+
 </body>
 </html>
